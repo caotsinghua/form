@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<form class="form" id="form">
+		<div class="form-item">
+			<label class="form-label"></label>
+			<div class="form-input-wrapper">
+				<input type="text" name="username" />
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label"></label>
+			<div class="form-input-wrapper">
+				<input type="text" name="password" />
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label"></label>
+			<div class="form-input-wrapper">
+				<input type="text" name="email" />
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label">颜色</label>
+			<div class="form-input-wrapper">
+				<input type="color" name="color" />
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label">范围</label>
+			<div class="form-input-wrapper">
+				<input type="range" name="range" />
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label">日期</label>
+			<div class="form-input-wrapper">
+				<input type="date" name="date" />
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label">隐藏</label>
+			<div class="form-input-wrapper">
+				<input type="hidden" name="_csrf" value="abcd" />
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label">搜索</label>
+			<div class="form-input-wrapper">
+				<input type="search" name="search" />
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label">颜色</label>
+			<div class="form-input-wrapper">
+				<input type="color" name="color" />
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label"></label>
+			<div class="form-input-wrapper">
+				<select name="type">
+					<option value="1">南</option>
+					<option value="2">北</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label"></label>
+			<div class="form-input-wrapper">
+				<label>
+					男
+					<input type="radio" name="sex" value="1">
+				</label>
+				<label>
+					女
+					<input type="radio" name="sex" value="2">
+				</label>
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="form-label"></label>
+			<div class="form-input-wrapper">
+				<label>
+					西瓜
+					<input type="checkbox" name="fruits" value="watermelon">
+				</label>
+				<label>
+					菠萝
+					<input type="checkbox" name="fruits" value="pineapple">
+				</label>
+			</div>
+		</div>
+		<button id="submit">submit</button>
+	</form>
+	<script src="./dist/index.js">
+	</script>
+	<script>
+		var form = new window.Form(document.getElementById("form"), {
+			onSubmit: function() {
+				console.log("submit");
+			},
+			onChange: function(values, item) {
+				console.log(values, item);
+			},
+			rules: {
+				username: [{
+					required: true,
+					message: "该字段不能为空"
+				}]
+			},
+			errorRender: function(inputWrapper) {
+				inputWrapper.style.border = '1px solid blue';
+			}
+        })
+        console.log(window.Form)
+
+		$("#submit").click(function(e){
+            e.preventDefault()
+			console.log(form.getFormFields());
+			form.validate(function(errors, fields) {
+				console.log(errors);
+				console.log(fields)
+			})
+        })
+	</script>
+</body>
+
+</html>
