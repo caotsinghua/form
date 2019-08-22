@@ -7,7 +7,8 @@ class Form {
         rules:{},
         onSubmit:()=>{},
         onChange:(values,item)=>{},
-        errorRender:null
+        errorRender:null,
+
     }){
         const {rules,onSubmit,onChange,errorRender}=config;
         this.rules=rules;
@@ -83,10 +84,31 @@ class Form {
             callback(errors,fields);
         })
     }
+    // 检查一个值
+    validateOne(){
 
+    }
+
+    // 对于输入事件的处理
+    bindChangeEvents(){
+
+    }
+    /**
+     * 当检查到错误时，会修改inputwrapper的style或class或添加一些元素，
+     * 需要在验证通过时将这些异常恢复原状，即下一次onChange通过
+     * 同理
+     * 当onChange时，对应的异常触发，在下次校验通过时也需要恢复原状
+     * 1.变化之前记住当前树
+     * 2.校验通过后将树恢复原状，并保证value是最新的
+     * @param {*} inputItem
+     * @param {*} error
+     */
     errorRender(inputItem,error){
 
         $(inputItem).css({'border':'1px solid #f00'})
+    }
+    errorRenderCancel(inputItem){
+
     }
 }
 
